@@ -29,17 +29,21 @@ export type AuthSignupFormProps = {
 const RECAPTCHAV3 = import.meta.env.VITE_RECAPTCHAV3_SITEKEY;
 
 export function AuthSignupForm(props: AuthSignupFormProps) {
+  //props
   const { input, errors } = props;
+  //hooks
   const { _ } = useLanguage();
   const [token, setToken] = useState<string>('');
 
   return (
     <form className="auth-form" method="post">
+      {/* Google reCAPTCHA to verify user */}
       <GoogleReCaptcha onVerify={token => {
         setToken(token);
       }}
       />
 
+      {/* Hidden input for reCAPTCHA token */}
       <Input type="hidden" name="recaptcha_token" value={token}/>
       
       <Control
@@ -180,8 +184,7 @@ export function AuthSignupHead(props: ServerPageProps<AuthConfigProps>) {
 export function AuthSignupPage(props: ServerPageProps<AuthConfigProps>) {
   return (
     <LayoutBlank head={false} {...props}>
-      <GoogleReCaptchaProvider
-        reCaptchaKey={RECAPTCHAV3}>
+      <GoogleReCaptchaProvider reCaptchaKey={RECAPTCHAV3}>
         <AuthSignupBody />
       </GoogleReCaptchaProvider>
     </LayoutBlank>
