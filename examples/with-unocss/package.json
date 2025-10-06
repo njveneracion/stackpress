@@ -21,7 +21,8 @@
     "purge": "dotenv -e .env -- stackpress purge --b config/develop -v",
     "push": "dotenv -e .env -- stackpress push --b config/develop -v",
     "query": "dotenv -e .env -- stackpress query --b config/develop -v",
-    "test": "nyc ts-mocha -r tsx tests/*.test.ts"
+    "test": "nyc ts-mocha -r tsx tests/*.test.ts",
+    "g": "yarn generate && yarn push && yarn populate && yarn develop"
   },
   "dependencies": {
     "@electric-sql/pglite": "0.2.17",
